@@ -1,0 +1,58 @@
+﻿@model School.Web.Models.ViewModels.MaterialViewModel
+@{
+    ViewBag.Title = "Редактировать учебный матириал";
+}
+
+<div class="row">
+    <div class="span3">
+        <ul class="widget widget-menu unstyled">
+            <li>
+                <a href="@Url.Action("Index", "Material")">
+                    <i class="menu-icon icon-circle-arrow-left"></i>Назад
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="module">
+    <div class="module-head">
+        <h3>Редактирование учебного материала</h3>
+    </div>
+    <div class="module-body">
+        <form class="form-horizontal row-fluid" action="@Url.Action("Edit")" method="post">
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(m => m.MaterialId)
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Наименование</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.MaterialName, new { @class = "span8", @placeholder = "Введите наименование..." })
+                    @Html.ValidationMessageFor(m => m.MaterialName)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Авторы</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Authors, new { @class = "span8", @placeholder = "Введите авторов..." })
+                    @Html.ValidationMessageFor(m => m.Authors)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Количество страниц</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Pages, new { @class = "span8", @placeholder = "Введите количество страниц..." })
+                    @Html.ValidationMessageFor(m => m.Pages)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

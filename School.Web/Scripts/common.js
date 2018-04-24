@@ -1,6 +1,29 @@
 ﻿$(document).ready(function () {
     if($('.datatable-1').length>0){
-        $('.datatable-1').dataTable();
+        $('.datatable-1').dataTable({
+            "language": {
+                "processing": "Подождите...",
+                "search": "Поиск:",
+                "lengthMenu": "Показать _MENU_ записей",
+                "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+                "infoEmpty": "Записи с 0 до 0 из 0 записей",
+                "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                "infoPostFix": "",
+                "loadingRecords": "Загрузка записей...",
+                "zeroRecords": "Записи отсутствуют.",
+                "emptyTable": "В таблице отсутствуют данные",
+                "paginate": {
+                    "first": "Первая",
+                    "previous": "Предыдущая",
+                    "next": "Следующая",
+                    "last": "Последняя"
+                },
+                "aria": {
+                    "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                    "sortDescending": ": активировать для сортировки столбца по убыванию"
+                }
+            }
+        });
         $('.dataTables_paginate').addClass('btn-group datatable-pagination');
         $('.dataTables_paginate > a').wrapInner('<span />');
         $('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');

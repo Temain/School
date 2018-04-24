@@ -13,25 +13,5 @@ namespace School.Web.Controllers
         {
             return View();
         }
-
-        public ActionResult Staff()
-        {
-            return View();
-        }
-
-        public ActionResult Students()
-        {
-            return View();
-        }
-
-        public ActionResult Disciplines()
-        {
-            return View();
-        }
-
-        public ActionResult Journal()
-        {
-            return View();
-        }
     }
 }

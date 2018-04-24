@@ -9,22 +9,22 @@
 
 <div class="btn-controls">
     <div class="btn-box-row row-fluid">
-        <a href="@Url.Action("Staff")" class="btn-box big span3">
+        <a href="@Url.Action("Index", "Teacher")" class="btn-box big span3">
             <i class="icon-sitemap"></i><b>Персонал</b>
             <p class="text-muted" style="margin-top: 1em;">
                 <span>Добавление, изменение, удаление</span>
             </p>
-        <a href="@Url.Action("Disciplines")" class="btn-box big span3">
-            <i class="icon-book"></i><b>Дисциплины</b>
-            <p class="text-muted" style="margin-top: 1em;">
-                <span>Добавление, изменение, удаление</span><br /><span>Назначение преподавателей</span><br /> <span>Назначение учебных материалов</span>
-            </p>
-        </a><a href="@Url.Action("Students")" class="btn-box big span3">
+        </a><a href="@Url.Action("Index", "Student")" class="btn-box big span3">
             <i class="icon-user"></i><b>Ученики</b>
             <p class="text-muted" style="margin-top: 1em;">
                 <span>Добавление, изменение, удаление</span><br /><span>Объединение в классы</span><br /> <span>Назначение учебных материалов</span>
             </p>
-        </a><a href="@Url.Action("Journal")" class="btn-box big span3">
+        <a href="@Url.Action("Index", "Discipline")" class="btn-box big span3">
+            <i class="icon-book"></i><b>Дисциплины</b>
+            <p class="text-muted" style="margin-top: 1em;">
+                <span>Добавление, изменение, удаление</span><br /><span>Назначение преподавателей</span><br /> <span>Назначение учебных материалов</span>
+            </p>
+        </a><a href="@Url.Action("Index", "Lesson")" class="btn-box big span3">
             <i class="icon-list"></i><b>Журнал</b>
             <p class="text-muted" style="margin-top: 1em;">
                 <span>Просмотр успеваемости</span><br /><span>Добавление занятий</span><br /> <span>Выставление оценок</span>

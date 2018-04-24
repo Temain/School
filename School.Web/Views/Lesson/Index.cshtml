@@ -1,0 +1,312 @@
+﻿
+@{
+    ViewBag.Title = "Журнал";
+}
+
+<style>
+    .table-hover-cells > tbody > tr > th:hover,
+    .table-hover-cells > tbody > tr > td:hover {
+        background-color: #f5f5f5;
+    }
+
+    .table-hover-cells > tbody > tr > th.active:hover,
+    .table-hover-cells > tbody > tr > td.active:hover,
+    .table-hover-cells > tbody > tr.active > th:hover,
+    .table-hover-cells > tbody > tr.active > td:hover {
+        background-color: #e8e8e8;
+    }
+
+    .table-hover.table-hover-cells > tbody > tr:hover > th:hover,
+    .table-hover.table-hover-cells > tbody > tr:hover > td:hover {
+        background-color: #e8e8e8;
+    }
+
+    .table-hover.table-hover-cells > tbody > tr.active:hover > th:hover,
+    .table-hover.table-hover-cells > tbody > tr.active:hover > td:hover {
+        background-color: #d8d8d8;
+    }
+
+    h1 > .divider:before,
+    h2 > .divider:before,
+    h3 > .divider:before,
+    h4 > .divider:before,
+    h5 > .divider:before,
+    h6 > .divider:before,
+    .h1 > .divider:before,
+    .h2 > .divider:before,
+    .h3 > .divider:before,
+    .h4 > .divider:before,
+    .h5 > .divider:before,
+    .h6 > .divider:before {
+        color: #777;
+        content: "\0223E\0020";
+    }
+</style>
+
+<div class="span12">
+    <div class="content">
+        <div class="module">
+            <div class="module-head">
+                <h3>
+                    Журнал
+                </h3>
+            </div>
+            <div class="module-option clearfix" style="border: none; padding-bottom: 0.5em;">
+                <div class="pull-left">
+                    Класс : &nbsp;
+                    <div class="btn-group">
+                        <button class="btn" style="width: 5em; text-align: left;">9а</button>
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">9а</a></li>
+                            <li><a href="#">9б</a></li>
+                            <li><a href="#">10а</a></li>
+                            <li><a href="#">10б</a></li>
+                        </ul>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    Дисциплина : &nbsp;
+                    <div class="btn-group">
+                        <button class="btn" style="text-align: left;">Алгебра</button>
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Алгебра [Преподаватель: Афанасьева Г.В.]</a></li>
+                            <li><a href="#">Информатика [Преподаватель: Бородин А.С.]</a></li>
+                            <li><a href="#">Физика [Преподаватель: Орлов Д.С.]</a></li>
+                        </ul>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    Неделя : &nbsp;
+                    <div class="btn-group">
+                        <button class="btn">22.01.2018 - 28.01.2018</button>
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">22.01.2018 - 28.01.2018</a></li>
+                            <li><a href="#">29.01.2018 - 04.02.2018</a></li>
+                            <li><a href="#">05.02.2018 - 11.02.2018</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <a href="#addLessonModal" data-toggle="modal"  class="btn btn-primary">Добавить занятие</a>
+                </div>
+            </div>
+
+            <div class="module-option clearfix" style="border: none; padding-bottom: 0.5em;">
+                <div class="pull-left">
+                    [Преподаватель: Афанасьева Г.В.]
+                </div>
+                <div class="pull-right">
+                    Проведено занятий: 9 / 26
+                </div>
+            </div>
+
+            <div class="module-body table" style="padding-bottom: 0em;">
+                <table class="table table-bordered table-hover-cells">
+                    <thead>
+                        <tr>
+                            <th class="span3">Домашнее задание</th>
+                            <th class="span1" style="border-left: none;"></th>
+                            <th class="span4" style="text-align: center;">Задания № 2, 4, 8, 10 стр.102</th>
+                            <th class="span4" style="text-align: center;">Задания № 1, 9, 14 стр.105</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="module-body table" style="padding-bottom: 3em;">
+                <table class="table table-bordered table-hover-cells">
+                    <thead>
+                        <tr>
+                            <th class="span1" style="text-align: center;">#</th>
+                            <th class="span3">Ученик</th>
+                            <th class="span4" style="text-align: center;">22.01</th>
+                            <th class="span4" style="text-align: center;">25.01</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center;">1</td>
+                            <td>Андреев Андрей Андреевич</td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b style="color: red;">Вел себя отвратительно, сорвал урок!</b></td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: orangered; padding: 0.5em;">3</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">2</td>
+                            <td>Васильев Василий Васильевич</td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: green;padding: 0.5em;">5</b></td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">3</td>
+                            <td>Дмитриев Дмитрий Дмитриевич</td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: orange; padding: 0.5em;">3</b></td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">4</td>
+                            <td>Иванов Иван Иванович</td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: green;padding: 0.5em;">5</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">5</td>
+                            <td>Ковалёва Анна Анатольевна</td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">6</td>
+                            <td>Петров Петр Петрович</td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: orange; padding: 0.5em;">4</b></td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">7</td>
+                            <td>Сидорова Ирина Васильевна</td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: green;padding: 0.5em;">5</b></td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">8</td>
+                            <td>Сидорова Ирина Николавена</td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: orangered; padding: 0.5em;">3</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">9</td>
+                            <td>Синицина Надежда Сергеевна</td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: orange; padding: 0.5em;">4</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">10</td>
+                            <td>Табаков Сергей Сергеевич</td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: green;padding: 0.5em;">5</b></td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">11</td>
+                            <td>Ушакова Ирина Николаевна</td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: red;padding: 0.5em;">2</b><b style="color: red;">&nbsp;Не подготовилась к уроку!</b></td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">12</td>
+                            <td>Шереметьев Роман Петрович</td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: green;padding: 0.5em;">5</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">13</td>
+                            <td>Щербаков Антон Олегович</td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: orange; padding: 0.5em;">4</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">14</td>
+                            <td>Яковлев Яков Васильевич</td>
+                            <td href="#myModal" data-toggle="modal"></td>
+                            <td href="#myModal" data-toggle="modal" style="text-align: center;"><b class="label" style="background-color: green;padding: 0.5em;">5</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--/.content-->
+</div>
+<!--/.span9-->
+
+
+<div id="myModal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Поставить оценку</h3>
+    </div>
+
+    <div class="modal-body">
+        <form class="form-horizontal row-fluid">
+            <div class="control-group">
+                <label class="control-label">Оценка</label>
+                <div class="controls">
+                    <label class="radio">
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="5" checked="">
+                        5
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="4">
+                        4
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="3">
+                        3
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="2">
+                        2
+                    </label>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label"></label>
+                <div class="controls">
+                    <label class="checkbox inline">
+                        <input type="checkbox" value="">
+                        Пометить как важное
+                    </label>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Коментарий</label>
+                <div class="controls">
+                    <textarea class="span8" rows="5"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Отмена</a>
+        <a href="#" class="btn btn-primary" data-dismiss="modal">Сохранить</a>
+    </div>
+</div>
+
+<div id="addLessonModal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Добавить занятие</h3>
+    </div>
+
+    <div class="modal-body">
+        <form class="form-horizontal row-fluid">
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Дата занятия</label>
+                <div class="controls">
+                    <div class="input-append">
+                        <input type="text" placeholder="Выберите дату..." class="span8" value="11.02.2002"><span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Домашнее задание</label>
+                <div class="controls">
+                    <textarea class="span8" rows="5">Задания № 1, 9, 14 стр.105</textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Отмена</a>
+        <a href="#" class="btn btn-primary" data-dismiss="modal">Сохранить</a>
+    </div>
+</div>

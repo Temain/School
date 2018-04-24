@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Редактировать дисциплину";
+}
+
+<div class="row">
+    <div class="span3">
+        <ul class="widget widget-menu unstyled">
+            <li>
+                <a href="@Url.Action("Disciplines")">
+                    <i class="menu-icon icon-circle-arrow-left"></i>Назад
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="module">
+    <div class="module-head">
+        <h3>Редактирование дисциплины</h3>
+    </div>
+    <div class="module-body">
+        <form class="form-horizontal row-fluid">
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Наименование</label>
+                <div class="controls">
+                    <input type="text" placeholder="Введите наименование..." class="span8" value="Алгебра">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Класс</label>
+                <div class="controls">
+                    <select tabindex="1" data-placeholder="Выберите класс.." class="span8">
+                        <option value="Category 1" selected="selected">9а</option>
+                        <option value="Category 2">9б</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Количество занятий</label>
+                <div class="controls">
+                    <input type="text" placeholder="Введите количество занятий..." class="span8" value="26">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Учебные материалы</label>
+                <div class="controls">
+                    <select tabindex="1" multiple="multiple" data-placeholder="Выберите материалы.." class="span8">
+                        <option value="Category 1" selected="selected">Учебник Алгебра 9 класс Ю.Н. Макарычев, Н.Г. Миндюк</option>
+                        <option value="Category 2">Учебник Информатика 9 класс Л.Л. Босова, А.Ю. Босова</option>
+                        <option value="Category 2">История России Данилов А.А. 9 класс</option>
+                        <option value="Category 2">Учебник Физика 9 класс А.В. Перышкин, Е.М. Гутник</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

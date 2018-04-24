@@ -1,0 +1,95 @@
+﻿@model School.Web.Models.ViewModels.TeacherViewModel
+@{
+    ViewBag.Title = "Редактировать персонал";
+}
+
+<div class="row">
+    <div class="span3">
+        <ul class="widget widget-menu unstyled">
+            <li>
+                <a href="@Url.Action("Index", "Teacher")">
+                    <i class="menu-icon icon-circle-arrow-left"></i>Назад
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="module">
+    <div class="module-head">
+        <h3>Редактирование информации о персонале</h3>
+    </div>
+    <div class="module-body">
+        <form class="form-horizontal row-fluid" action="@Url.Action("Edit")" method="post">
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(m => m.TeacherId)
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Фамилия</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "span8", @placeholder = "Введите фамилию..." })
+                    @Html.ValidationMessageFor(m => m.LastName)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Имя</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "span8", @placeholder = "Введите имя..." })
+                    @Html.ValidationMessageFor(m => m.FirstName)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Отчество</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "span8", @placeholder = "Введите отчество..." })
+                    @Html.ValidationMessageFor(m => m.MiddleName)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Специализация</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Speciality, new { @class = "span8", @placeholder = "Введите специализацию..." })
+                    @Html.ValidationMessageFor(m => m.Speciality)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Дата рождения</label>
+                <div class="controls" style="position: relative;">
+                    @Html.TextBoxFor(m => m.BirthDate, new { @class = "span4 datepicker", @placeholder = "Введите дату..." })
+                    @Html.ValidationMessageFor(m => m.BirthDate)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Дата найма</label>
+                <div class="controls" style="position: relative;">
+                    @Html.TextBoxFor(m => m.HireDate, new { @class = "span4 datepicker", @placeholder = "Введите дату..." })
+                    @Html.ValidationMessageFor(m => m.HireDate)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('.datepicker').datetimepicker({
+                locale: 'ru',
+                format: 'DD.MM.YYYY',
+                useCurrent: true
+            });
+        });
+    </script>
+}

@@ -1,0 +1,116 @@
+﻿@model IEnumerable<School.Web.Models.ViewModels.ClassViewModel>
+@{
+    ViewBag.Title = "Классы";
+}
+
+<div class="span3">
+    <div class="sidebar">
+        <ul class="widget widget-menu unstyled">
+            <li>
+                <a href="@Url.Action("Index", "Home")">
+                    <i class="menu-icon icon-circle-arrow-left"></i>К разделам
+                </a>
+            </li>
+        </ul>
+
+        <ul class="widget widget-menu unstyled">
+            <li>
+                <a href="@Url.Action("Index", "Student")">
+                    <i class="menu-icon icon-user"></i>Ученики
+                </a>
+            </li>
+            <li class="active">
+                <a href="@Url.Action("Index", "Class")"><i class="menu-icon icon-list"></i>Классы</a>
+            </li>
+        </ul>
+        <!--/.widget-nav-->
+
+        <ul class="widget widget-menu unstyled">
+            <li>
+                <a href="@Url.Action("Create", "Class")">
+                    <i class="menu-icon icon-plus"></i>Добавить класс
+                </a>
+            </li>
+        </ul>
+        <!--/.widget-nav-->
+    </div>
+    <!--/.sidebar-->
+</div>
+<!--/.span3-->
+<div class="span9">
+    <div class="content">
+        <div class="module">
+            <div class="module-head">
+                <h3>
+                    Классы
+                </h3>
+            </div>
+            <div class="module-body table">
+                <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display"
+                       width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Номер
+                            </th>
+                            <th>
+                                Постфикс
+                            </th>
+                            <th>
+                                Направленность
+                            </th>
+                            <th>
+                                Действия
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var index = 0;
+                            foreach (var cls in Model)
+                            {
+                                <tr class="@(index % 2 == 0 ? "even" : "odd") gradeX">
+                                    <td>
+                                        @cls.Number
+                                    </td>
+                                    <td>
+                                        @cls.Prefix
+                                    </td>
+                                    <td>
+                                        @cls.Direction
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", new { id = cls.ClassId })"><i class="icon-pencil" style="color: green;"></i></a>
+                                        <a href="@Url.Action("Delete", new { id = cls.ClassId })"><i class="icon-trash" style="color: red;"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                    }
+               
+                    </tbody>
+                    @*<tfoot>
+                            <tr>
+                                <th>
+                                    Rendering engine
+                                </th>
+                                <th>
+                                    Browser
+                                </th>
+                                <th>
+                                    Platform(s)
+                                </th>
+                                <th>
+                                    Engine version
+                                </th>
+                                <th>
+                                    CSS grade
+                                </th>
+                            </tr>
+                        </tfoot>*@
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--/.content-->
+</div>
+<!--/.span9-->

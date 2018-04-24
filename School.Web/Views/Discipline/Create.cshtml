@@ -1,0 +1,74 @@
+﻿@model School.Web.Models.ViewModels.DisciplineViewModel
+@{
+    ViewBag.Title = "Добавить дисциплину";
+}
+
+<div class="row">
+    <div class="span3">
+        <ul class="widget widget-menu unstyled">
+            <li>
+                <a href="@Url.Action("Index", "Discipline")">
+                    <i class="menu-icon icon-circle-arrow-left"></i>Назад
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="module">
+    <div class="module-head">
+        <h3>Добавление дисциплины</h3>
+    </div>
+    <div class="module-body">
+        <form class="form-horizontal row-fluid" action="@Url.Action("Create")" method="post">
+            @Html.AntiForgeryToken()
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Наименование</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.DisciplineName, new { @class = "span8", @placeholder = "Введите наименование..." })
+                    @Html.ValidationMessageFor(m => m.DisciplineName)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Учитель</label>
+                <div class="controls">
+                    @Html.DropDownListFor(m => m.TeacherId, (SelectList)ViewBag.Teachers, "", new { @class = "span8", @data_placeholder = "Выберите учителя..." })
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Класс</label>
+                <div class="controls">
+                    @Html.DropDownListFor(m => m.ClassId, (SelectList)ViewBag.Classes, "", new { @class = "span8", @data_placeholder = "Выберите класс..." })
+                </div>
+            </div>
+
+            @*<div class="control-group">
+                <label class="control-label" for="basicinput">Количество занятий</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "span8", @placeholder = "Введите количество занятий..." })
+                    @Html.ValidationMessageFor(m => m.LastName)
+                </div>
+            </div>*@
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Учебные материалы</label>
+                <div class="controls">
+                    <select tabindex="1" multiple="multiple" data-placeholder="Выберите материалы.." class="span8">
+                        <option value="Category 1">Учебник Алгебра 9 класс Ю.Н. Макарычев, Н.Г. Миндюк</option>
+                        <option value="Category 2">Учебник Информатика 9 класс Л.Л. Босова, А.Ю. Босова</option>
+                        <option value="Category 2">История России Данилов А.А. 9 класс</option>
+                        <option value="Category 2">Учебник Физика 9 класс А.В. Перышкин, Е.М. Гутник</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
