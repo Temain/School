@@ -37,7 +37,7 @@
 
                     @foreach (var lesson in Model)
                     {
-                        <th style="text-align: center;">@lesson.LessonDate.ToShortDateString()</th>
+                        <th style="text-align: center;">@lesson.LessonDate.ToString("dd.MM.yyyy")</th>
                     }
                 </tr>
             </thead>

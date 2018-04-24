@@ -41,10 +41,10 @@ namespace School.Web.Controllers
                     })
                     .SkipWhile(x => x.weekFinish < firstSeptember.AddDays(1))
                     .Select((x, i) => new SelectListItem {
-                        Text = x.weekStart.ToShortDateString() + " - " + x.weekFinish.ToShortDateString(),
+                        Text = x.weekStart.ToString("dd.MM.yyyy") + " - " + x.weekFinish.ToString("dd.MM.yyyy"),
                         // WeekNumber = i + 1,
                         Value = x.weekStart.ToShortDateString(),
-                        Selected = DateTime.Now.StartOfWeek(DayOfWeek.Monday).ToShortDateString() == x.weekStart.ToShortDateString()
+                        Selected = DateTime.Now.StartOfWeek(DayOfWeek.Monday).ToString("dd.MM.yyyy") == x.weekStart.ToString("dd.MM.yyyy")
                     });
 
             ViewBag.Weeks = weeks; // new SelectList(weeks);
