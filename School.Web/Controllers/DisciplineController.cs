@@ -47,6 +47,14 @@ namespace School.Web.Controllers
             {
                 var discipline = Mapper.Map<Discipline>(viewModel);
 
+                if (viewModel.SelectedMaterials != null && viewModel.SelectedMaterials.Count() > 0)
+                {
+                    var materials = await db.Materials.Where(m => viewModel.SelectedMaterials.Contains(m.MaterialId) && m.IsDeleted == false)
+                        .ToListAsync();
+
+                    discipline.Materials = materials;
+                }
+               
                 db.Disciplines.Add(discipline);
                 await db.SaveChangesAsync();
 
@@ -71,6 +79,7 @@ namespace School.Web.Controllers
             }
 
             var viewModel = Mapper.Map<DisciplineViewModel>(discipline);
+            viewModel.SelectedMaterials = discipline.Materials.Select(m => m.MaterialId).ToList();
 
             await CreateSelectLists();
 
@@ -89,6 +98,15 @@ namespace School.Web.Controllers
                 var discipline = await db.Disciplines.FindAsync(viewModel.DisciplineId);
 
                 Mapper.Map(viewModel, discipline);
+
+                if (viewModel.SelectedMaterials != null && viewModel.SelectedMaterials.Count() > 0)
+                {
+                    var materials = await db.Materials.Where(m => viewModel.SelectedMaterials.Contains(m.MaterialId) && m.IsDeleted == false)
+                        .ToListAsync();
+
+                    discipline.Materials.Clear();
+                    discipline.Materials.AddRange(materials);
+                }
 
                 db.Entry(discipline).State = EntityState.Modified;
                 await db.SaveChangesAsync();
@@ -143,18 +161,27 @@ namespace School.Web.Controllers
         private async Task CreateSelectLists()
         {
             var cls = await db.Classes.Where(x => x.IsDeleted == false)
-             .Select(x => new { x.ClassId, ClassName = x.Number + x.Prefix })
-             .ToListAsync();
+                .Select(x => new { x.ClassId, ClassName = x.Number + x.Prefix })
+                .ToListAsync();
             ViewBag.Classes = new SelectList(cls, "ClassId", "ClassName");
 
             var teachers = await db.Teachers.Where(x => x.IsDeleted == false)
                 .Select(x => new {
                     x.TeacherId,
                     TeacherName = x.LastName + " " + (x.FirstName != null ? x.FirstName : "") + " "
-                    + (x.MiddleName != null ? x.MiddleName : "")
+                        + (x.MiddleName != null ? x.MiddleName : "")
+                        + (", " + x.Speciality ?? "")
                 })
                 .ToListAsync();
             ViewBag.Teachers = new SelectList(teachers, "TeacherId", "TeacherName");
+
+            ViewBag.Materials = await db.Materials.Where(x => x.IsDeleted == false)
+               .Select(x => new MaterialViewModel
+               {
+                   MaterialId = x.MaterialId,
+                   MaterialName = x.MaterialName + ", " + (x.Authors ?? "")
+               })
+               .ToListAsync();
         }
     }
 }

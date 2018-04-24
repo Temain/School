@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<School.Web.Models.ViewModels.DisciplineViewModel>
 @{
     ViewBag.Title = "Дисциплины";
 }
@@ -56,7 +56,7 @@
                             <th>
                                 Класс
                             </th>
-                            <th class="align-center">
+                            <th>
                                 Количество занятий
                             </th>
                             <th>
@@ -68,98 +68,50 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="odd gradeX">
-                            <td>
-                                Алгебра
-                            </td>
-                            <td>
-                                9a
-                            </td>
-                            <td class="align-center">
-                                26
-                            </td>
-                            <td class="center">
-                                Учебник Алгебра 9 класс Ю.Н. Макарычев, Н.Г. Миндюк
-                            </td>
-                            <td>
-                                <a href="@Url.Action("EditDiscipline")"><i class="icon-pencil" style="color: green;"></i></a>
-                                <a href="#"><i class="icon-trash" style="color: red;"></i></a>
-                            </td>
-                        </tr>
-                        <tr class="even gradeC">
-                            <td>
-                                История России
-                            </td>
-                            <td>
-                                9б
-                            </td>
-                            <td class="align-center">
-                                32
-                            </td>
-                            <td class="center">
-                                История России Данилов А.А. 9 класс
-                            </td>
-                            <td class="center">
-                                <a href="@Url.Action("EditDiscipline")"><i class="icon-pencil" style="color: green;"></i></a>
-                                <a href="#"><i class="icon-trash" style="color: red;"></i></a>
-                            </td>
-                        </tr>
-                        <tr class="odd gradeA">
-                            <td>
-                                Информатика
-                            </td>
-                            <td>
-                                9а
-                            </td>
-                            <td class="align-center">
-                                20
-                            </td>
-                            <td class="center">
-                                Учебник Информатика 9 класс Л.Л. Босова, А.Ю. Босова
-                            </td>
-                            <td class="center">
-                                <a href="@Url.Action("EditDiscipline")"><i class="icon-pencil" style="color: green;"></i></a>
-                                <a href="#"><i class="icon-trash" style="color: red;"></i></a>
-                            </td>
-                        </tr>
-                        <tr class="even gradeA">
-                            <td>
-                                Физика
-                            </td>
-                            <td>
-                                2а
-                            </td>
-                            <td class="align-center">
-                                28
-                            </td>
-                            <td class="center">
-                                Учебник Физика 9 класс А.В. Перышкин, Е.М. Гутник
-                            </td>
-                            <td class="center">
-                                <a href="@Url.Action("EditDiscipline")"><i class="icon-pencil" style="color: green;"></i></a>
-                                <a href="#"><i class="icon-trash" style="color: red;"></i></a>
-                            </td>
-                        </tr>
+                        @{
+                            var index = 0;
+                            foreach (var discipline in Model)
+                            {
+                                <tr class="@(index % 2 == 0 ? "even" : "odd") gradeX">
+                                    <td>
+                                        @discipline.DisciplineName
+                                    </td>
+                                    <td>
+                                        @discipline.ClassName
+                                    </td>
+                                    <td>
+                                        @discipline.TeacherName
+                                    </td>
+                                    <td class="center">
+                                        @(discipline.Materials != null ? string.Join(",", discipline.Materials.Select(m => m.MaterialName + " " + m.Authors)) : "")
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", new { id = discipline.DisciplineId })"><i class="icon-pencil" style="color: green;"></i></a>
+                                        <a href="@Url.Action("Discipline", new { id = discipline.DisciplineId })"><i class="icon-trash" style="color: red;"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
                     </tbody>
                     @*<tfoot>
-                        <tr>
-                            <th>
-                                Rendering engine
-                            </th>
-                            <th>
-                                Browser
-                            </th>
-                            <th>
-                                Platform(s)
-                            </th>
-                            <th>
-                                Engine version
-                            </th>
-                            <th>
-                                CSS grade
-                            </th>
-                        </tr>
-                    </tfoot>*@
+                            <tr>
+                                <th>
+                                    Rendering engine
+                                </th>
+                                <th>
+                                    Browser
+                                </th>
+                                <th>
+                                    Platform(s)
+                                </th>
+                                <th>
+                                    Engine version
+                                </th>
+                                <th>
+                                    CSS grade
+                                </th>
+                            </tr>
+                        </tfoot>*@
                 </table>
             </div>
         </div>

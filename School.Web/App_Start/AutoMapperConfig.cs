@@ -29,6 +29,7 @@ namespace School.Web.App_Start
                 cfg.CreateMap<Material, MaterialViewModel>();
                 cfg.CreateMap<MaterialViewModel, Material>();
                 cfg.CreateMap<Lesson, LessonViewModel>();
+                cfg.CreateMap<LessonViewModel, Lesson>();
                 cfg.CreateMap<LessonDetail, LessonDetailViewModel>();
                 cfg.CreateMap<LessonDetailViewModel, LessonDetail>();
             });

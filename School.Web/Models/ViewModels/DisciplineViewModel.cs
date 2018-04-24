@@ -16,6 +16,9 @@ namespace School.Web.Models.ViewModels
         public int TeacherId { get; set; }
         public string TeacherName { get; set; }
 
+        public int? NumberOfLessons { get; set; }
+
+        public List<int> SelectedMaterials { get; set; }
         public List<MaterialViewModel> Materials { get; set; }
     }
 }

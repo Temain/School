@@ -21,6 +21,7 @@ namespace School.Web.Models
         public virtual Student Student { get; set; }
 
         public int Grade { get; set; }
+        public bool Attention { get; set; }
 
         public string Comment { get; set; }
 

@@ -1,4 +1,5 @@
-﻿
+﻿@using School.Web.Models.ViewModels
+@model School.Web.Models.ViewModels.DisciplineViewModel
 @{
     ViewBag.Title = "Редактировать дисциплину";
 }
@@ -7,7 +8,7 @@
     <div class="span3">
         <ul class="widget widget-menu unstyled">
             <li>
-                <a href="@Url.Action("Disciplines")">
+                <a href="@Url.Action("Index", "Discipline")">
                     <i class="menu-icon icon-circle-arrow-left"></i>Назад
                 </a>
             </li>
@@ -17,42 +18,51 @@
 
 <div class="module">
     <div class="module-head">
-        <h3>Редактирование дисциплины</h3>
+        <h3>Редактировать дисциплины</h3>
     </div>
     <div class="module-body">
-        <form class="form-horizontal row-fluid">
+        <form class="form-horizontal row-fluid" action="@Url.Action("Edit")" method="post">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.DisciplineId)
+
             <div class="control-group">
                 <label class="control-label" for="basicinput">Наименование</label>
                 <div class="controls">
-                    <input type="text" placeholder="Введите наименование..." class="span8" value="Алгебра">
+                    @Html.TextBoxFor(m => m.DisciplineName, new { @class = "span8", @placeholder = "Введите наименование..." })
+                    @Html.ValidationMessageFor(m => m.DisciplineName)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="basicinput">Учитель</label>
+                <div class="controls">
+                    @Html.DropDownListFor(m => m.TeacherId, (SelectList)ViewBag.Teachers, "", new { @class = "span8", @data_placeholder = "Выберите учителя..." })
                 </div>
             </div>
 
             <div class="control-group">
                 <label class="control-label" for="basicinput">Класс</label>
                 <div class="controls">
-                    <select tabindex="1" data-placeholder="Выберите класс.." class="span8">
-                        <option value="Category 1" selected="selected">9а</option>
-                        <option value="Category 2">9б</option>
-                    </select>
+                    @Html.DropDownListFor(m => m.ClassId, (SelectList)ViewBag.Classes, "", new { @class = "span8", @data_placeholder = "Выберите класс..." })
                 </div>
             </div>
 
             <div class="control-group">
-                <label class="control-label" for="basicinput">Количество занятий</label>
+                <label class="control-label">Количество занятий</label>
                 <div class="controls">
-                    <input type="text" placeholder="Введите количество занятий..." class="span8" value="26">
+                    @Html.TextBoxFor(m => m.NumberOfLessons, new { @class = "span8", @placeholder = "Введите количество занятий..." })
+                    @Html.ValidationMessageFor(m => m.NumberOfLessons)
                 </div>
             </div>
 
             <div class="control-group">
                 <label class="control-label" for="basicinput">Учебные материалы</label>
                 <div class="controls">
-                    <select tabindex="1" multiple="multiple" data-placeholder="Выберите материалы.." class="span8">
-                        <option value="Category 1" selected="selected">Учебник Алгебра 9 класс Ю.Н. Макарычев, Н.Г. Миндюк</option>
-                        <option value="Category 2">Учебник Информатика 9 класс Л.Л. Босова, А.Ю. Босова</option>
-                        <option value="Category 2">История России Данилов А.А. 9 класс</option>
-                        <option value="Category 2">Учебник Физика 9 класс А.В. Перышкин, Е.М. Гутник</option>
+                    <select tabindex="1" multiple="multiple" name="SelectedMaterials" data-placeholder="Выберите материалы.." class="span8">
+                        @foreach (var material in (List<MaterialViewModel>)ViewBag.Materials)
+                {
+                    <option value="@material.MaterialId" @(Model.SelectedMaterials != null && Model.SelectedMaterials.Contains(material.MaterialId) ? "selected='selected'" : "")>@material.MaterialName</option>
+        }
                     </select>
                 </div>
             </div>

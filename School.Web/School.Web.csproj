@@ -226,6 +226,14 @@
     <Compile Include="Migrations\201804232033344_AddRemoveDeleteConvention.Designer.cs">
       <DependentUpon>201804232033344_AddRemoveDeleteConvention.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804241725326_AddAttentionField.cs" />
+    <Compile Include="Migrations\201804241725326_AddAttentionField.Designer.cs">
+      <DependentUpon>201804241725326_AddAttentionField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804241905557_AddNumberOfLessons.cs" />
+    <Compile Include="Migrations\201804241905557_AddNumberOfLessons.Designer.cs">
+      <DependentUpon>201804241905557_AddNumberOfLessons.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Class.cs" />
@@ -402,6 +410,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Lesson\_Lesson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -418,6 +427,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804232033344_AddRemoveDeleteConvention.resx">
       <DependentUpon>201804232033344_AddRemoveDeleteConvention.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804241725326_AddAttentionField.resx">
+      <DependentUpon>201804241725326_AddAttentionField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804241905557_AddNumberOfLessons.resx">
+      <DependentUpon>201804241905557_AddNumberOfLessons.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@ namespace School.Web.Models.ViewModels
 {
     public class LessonDetailViewModel
     {
-        public int LessonDetailId { get; set; }
+        public int? LessonDetailId { get; set; }
 
         public int LessonId { get; set; }
 
@@ -15,7 +15,7 @@ namespace School.Web.Models.ViewModels
         public StudentViewModel Student { get; set; }
 
         public int Grade { get; set; }
-
+        public bool? Attention { get; set; }
         public string Comment { get; set; }
     }
 }

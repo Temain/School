@@ -1,0 +1,86 @@
+﻿@using School.Web.Models.ViewModels
+@model IEnumerable<School.Web.Models.ViewModels.LessonViewModel>
+@if (Model.Any())
+{
+
+    <div class="module-option clearfix" style="border: none; padding-bottom: 0.5em;">
+        <div class="pull-left">
+            [Преподаватель: @ViewBag.TeacherName]
+        </div>
+        <div class="pull-right">
+            Проведено занятий: @ViewBag.AddedLessons / @ViewBag.NumberOfLessons
+        </div>
+    </div>
+
+    <div class="module-body table" style="padding-bottom: 0em;">
+        <table class="table table-bordered table-hover-cells">
+            <thead>
+                <tr>
+                    <th class="span3">Домашнее задание</th>
+                    <th class="span1" style="border-left: none;"></th>
+
+                    @foreach (var lesson in Model)
+                    {
+                        <th style="text-align: center;">@lesson.HomeWork</th>
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="module-body table" style="padding-bottom: 3em;">
+        <table class="table table-bordered table-hover-cells">
+            <thead>
+                <tr>
+                    <th class="span1" style="text-align: center;">#</th>
+                    <th class="span3">Ученик</th>
+
+                    @foreach (var lesson in Model)
+                    {
+                        <th style="text-align: center;">@lesson.LessonDate.ToShortDateString()</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var index = 0;
+                    foreach (var student in (List<StudentViewModel>)ViewBag.Students)
+                    {
+                        <tr class="@(index % 2 == 0 ? "even" : "odd") gradeX">
+                            <td style="text-align: center;">@(++index)</td>
+                            <td>
+                                @(student.LastName + " " + student.FirstName ?? "" + " " + student.MiddleName ?? "")
+                            </td>
+                            @foreach (var lesson in Model)
+                            {
+                                var lessonDetail = lesson.LessonDetails.LastOrDefault(ld => ld.StudentId == student.StudentId);
+
+                                <td href="#myModal" data-toggle="modal" style="text-align: center;" class="detail">
+                                    <input type="hidden" class="lessonId" value="@lesson.LessonId" />
+                                    <input type="hidden" class="studentId" value="@student.StudentId" />
+                                    @if (lessonDetail != null)
+                                    {
+                                        <input type="hidden" class="lessonDetailId" value="@lessonDetail.LessonDetailId" />
+                                        if (lessonDetail.Grade > 0)
+                                        {
+                                            <b class="label" style="background-color: @(lessonDetail.Grade == 5 ? "green" : "")@(lessonDetail.Grade == 4 ? "orange" : "")@(lessonDetail.Grade == 3 ? "orangered" : "")@(lessonDetail.Grade == 2 ? "red" : "");padding: 0.5em;">@lessonDetail.Grade</b>
+                                            <b @((lessonDetail.Attention ?? false) ? "style=color:red;" : "")>@lessonDetail.Comment</b>
+                                        }
+                                    }
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="module-option clearfix">
+        <div class="alert alert-info">
+            <strong>На выранной неделе нет занятий.</strong>
+        </div>
+    </div>
+}

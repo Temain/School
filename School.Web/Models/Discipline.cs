@@ -21,6 +21,8 @@ namespace School.Web.Models
         public int TeacherId { get; set; }
         public virtual Teacher Teacher { get; set; }
 
+        public int? NumberOfLessons { get; set; }
+
         public DateTime CreatedAt { get; set; }
         public bool IsDeleted { get; set; }
 
